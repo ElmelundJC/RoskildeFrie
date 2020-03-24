@@ -55,7 +55,7 @@ public class Reader {
                 case 3:
                     ResultSet query6 = test.executeQuery("select * from " + temp[2]);
                     while (query6.next()) {
-                        System.out.println(query6.getString("stuenr."));
+                        System.out.println(query6.getString("stuenr.") + " " + query6.getString("farve"));
                     }
                     break;
             }
