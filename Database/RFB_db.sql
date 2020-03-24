@@ -19,9 +19,9 @@ USE `RFB_db` ;
 -- Table `RFB_db`.`Stue`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `RFB_db`.`Stue` (
-  `stuenr.` INT NOT NULL,
+  `stuenr` INT NOT NULL,
   `farve` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`stuenr.`))
+  PRIMARY KEY (`stuenr`))
 ENGINE = InnoDB;
 
 
@@ -33,12 +33,12 @@ CREATE TABLE IF NOT EXISTS `RFB_db`.`Børn` (
   `cpr_nummer` VARCHAR(45) NOT NULL,
   `navn` VARCHAR(45) NOT NULL,
   `adresse` VARCHAR(45) NOT NULL,
-  `Stue_stuenr.` INT NOT NULL,
-  PRIMARY KEY (`id_barn`, `Stue_stuenr.`),
-  INDEX `fk_Børn_Stue1_idx` (`Stue_stuenr.` ASC) VISIBLE,
+  `Stue_stuenr` INT NOT NULL,
+  PRIMARY KEY (`id_barn`, `Stue_stuenr`),
+  INDEX `fk_Børn_Stue1_idx` (`Stue_stuenr` ASC) VISIBLE,
   CONSTRAINT `fk_Børn_Stue1`
-    FOREIGN KEY (`Stue_stuenr.`)
-    REFERENCES `RFB_db`.`Stue` (`stuenr.`)
+    FOREIGN KEY (`Stue_stuenr`)
+    REFERENCES `RFB_db`.`Stue` (`stuenr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

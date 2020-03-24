@@ -35,4 +35,8 @@ public class Connector {
             System.out.println("failed to close connection " + e);
         }
     }
+
+    public Connection getCon(){
+        return con;
+    }
 }
