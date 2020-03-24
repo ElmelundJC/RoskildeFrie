@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Connector connection = new Connector("root", "Healmelawl0210");
+        Connector connection = new Connector("root", "12345678");
 
         connection.closeConnection();
 
