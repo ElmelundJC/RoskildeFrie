@@ -5,7 +5,7 @@ import java.sql.*;
 public class UpdateEdit {
 
     public static void Update(String url, String user, String password) {
-        Connection con;
+        Connection con = null;
         Scanner scan = new Scanner(System.in);
         System.out.println("Prompting user for information");
         System.out.println("Rediger Cpr-nummer");
@@ -21,12 +21,23 @@ public class UpdateEdit {
 
         try {
             con = DriverManager.getConnection(url, user, password);
-            Statement stmt1 = con.createStatement();
-            String sql1 = "UPDATE BØRN SET cpr_nummer = '" + cpr_nummer + "', navn = '" + navn +"', adresse = '" + adresse + "', Stue_stuenr = '" + stuenr + "' WHERE id_barn =" + barnId + ";";
-            int rs1 = stmt1.executeUpdate(sql1);
+            PreparedStatement myStmt = con.prepareStatement("UPDATE BØRN SET cpr_nummer = ?, navn = ?, adresse = ?, Stue_stuenr = ? WHERE id_barn =?;");
+
+            myStmt.setString(1, cpr_nummer);
+            myStmt.setString(2, navn);
+            myStmt.setString(3, adresse);
+            myStmt.setString(4, stuenr);
+            myStmt.setString(5, barnId);
+
+
+            int myResult = myStmt.executeUpdate();
+
+
+            System.out.println("Childrow Updated");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Failed to execute update " + e);
         }
+    }
     }
 }
