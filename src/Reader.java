@@ -18,8 +18,6 @@ public class Reader {
             String password = "12345678";
             con = DriverManager.getConnection(url, name, password);
             Statement test = con.createStatement();
-            ResultSet test1 = test.executeQuery("use rfb_db;");
-            ResultSet test2 = test.executeQuery("select * from børn");
 
             System.out.println("what table would you like to be viewed?");
 
@@ -51,7 +49,7 @@ public class Reader {
                 case 2:
                     ResultSet query5 = test.executeQuery("select * from " + temp[1]);
                     while (query5.next()) {
-                        System.out.println(query5.getString("navn"));
+                        System.out.println(query5.getString("navn") + " \nNummer = " + query5.getString("mobilnummmer"));
                     }
                     break;
                 case 3:
