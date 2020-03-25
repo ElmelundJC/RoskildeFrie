@@ -1,3 +1,5 @@
+package com.company;
+
 import com.company.Connector;
 import java.util.Scanner;
 import java.sql.*;
