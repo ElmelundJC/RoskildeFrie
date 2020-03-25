@@ -154,5 +154,24 @@ public class Crud {
         }
     }
 
+    //DELETE
+
+    public void deleteRow(int id) {
+        String sql = "DELETE FROM børn WHERE id_barn = ?";
+
+        try {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            // set the corresponding param
+            pstmt.setInt(1, id);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }
