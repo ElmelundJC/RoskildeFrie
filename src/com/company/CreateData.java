@@ -29,9 +29,9 @@ public class CreateData {
 
         final String SQL_INSERT = "INSERT INTO BØRN (id_barn, cpr_nummer, navn, adresse, Stue_stuenr) VALUES (default, ?,?,?,?)";
 
-        try {
+        PreparedStatement preparedStatement = prepStatement(SQL_INSERT);
 
-            PreparedStatement preparedStatement = prepStatement(SQL_INSERT);
+        try {
 
             preparedStatement.setString(1, cpr);
             preparedStatement.setString(2, name);
