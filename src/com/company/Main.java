@@ -1,21 +1,19 @@
 package com.company;
 
-import java.sql.*;
+import javax.swing.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-
-        Connector connection = new Connector("root", "Healmelawl0210");
 
 
+        public static void main(String[] args) {
+           // SwingUtilities.invokeLater(new Runnable() {
+                //public void run() {
+                    new MainFrame();
 
-        Crud crud = new Crud(connection.getCon());
-
-        crud.insertChild("0210921743", "Kristian", "Bramstedvej 4", 1);
-
-        connection.closeConnection();
+                }
+            //});
+        }
 
 
-    }
-}
+

@@ -6,14 +6,14 @@ import java.sql.*;
 
 public class Connector {
 
-    String password;
-    String username;
+    String password = "student";
+    String username = "student";
     Connection con;
 
     public Connector(String username, String password){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rfb_db",username,password);
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rfb_db?serverTimezone = UTC",username,password);
 
             System.out.println("Succesfully connected to server");
 
