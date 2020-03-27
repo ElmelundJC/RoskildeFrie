@@ -6,15 +6,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Connector connection = new Connector("root", "Healmelawl0210");
+        //Connector connection = new Connector("root", "Healmelawl0210");
 
 
 
-        Crud crud = new Crud(connection.getCon());
+        //Crud crud = new Crud(connection.getCon());
 
-        crud.insertChild("0210921743", "Kristian", "Bramstedvej 4", 1);
+        //crud.insertChild("0210921743", "Kristian", "Bramstedvej 4", 1);
 
-        connection.closeConnection();
+        //connection.closeConnection();
+
+        MainMenu testWindow = new MainMenu();
 
 
     }
