@@ -24,14 +24,17 @@ public class MainMenu implements GraphicalMenu {
 
     public MainMenu() {
 
+        createMainMenu();
+
+
+    }
+    public void createMainMenu(){
         addFrame(TITLE, 400, 500);
 
         this.readMenu = new ReadMenu(f);
         this.createMenu = new CreateMenu(f);
         this.updateMenu = new UpdateMenu(f);
         this.deleteMenu = new DeleteMenu(f);
-
-
     }
 
 
