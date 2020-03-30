@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DeleteMenu implements GraphicalMenu {
+public class DeleteMenu extends Crud implements GraphicalMenu {
 
     final String TITLE = "Delete Menu";
 
@@ -16,6 +16,8 @@ public class DeleteMenu implements GraphicalMenu {
     JButton placeholderThree;
     JButton placeholderFour;
     JButton placeholderFive;
+
+    JTextField placeholderTextOne;
 
     public DeleteMenu(JFrame previousFrame){
 
@@ -30,7 +32,9 @@ public class DeleteMenu implements GraphicalMenu {
         this.f = new JFrame(windowName);
         f.setSize(sizeX, sizeY);
 
-        this.placeholderOne = addButton("TBA1", 10, 10, 100, 40);
+        this.placeholderOne = addButton("Delete", 10, 10, 100, 40);
+        this.placeholderTextOne = addTextField("Insert Child ID", 120, 10, 100, 40);
+
         this.placeholderTwo = addButton("TBA2", 10, 60, 100, 40);
         this.placeholderThree = addButton("TBA3", 10, 110, 100, 40);
         this.placeholderFour = addButton("TBA4", 10, 160, 100, 40);
@@ -53,8 +57,28 @@ public class DeleteMenu implements GraphicalMenu {
         return b;
     }
 
+    public JTextField addTextField(String text, int bPosX, int bPosY, int width, int height){
+
+        JLabel label = new JLabel(text);
+        label.setBounds(bPosX+100, bPosY, width, height);
+        f.add(label);
+
+        JTextField t = new JTextField();
+        t.setBounds(bPosX, bPosY, width, height);
+        f.add(t);
+
+        t.addActionListener(this);
+
+        return t;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==placeholderOne){
+
+            deleteRow(Integer.parseInt(placeholderTextOne.getText()));
+        }
 
         if(e.getSource()==placeholderFive){
 

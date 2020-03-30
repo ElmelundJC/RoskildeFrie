@@ -6,10 +6,14 @@ import java.util.Scanner;
 
 public class Crud {
 
+    Connector connector;
     Connection con;
 
-    public Crud(Connection con){
-        this.con = con;
+    public Crud(){
+
+        connector = new Connector("root", "Healmelawl0210");
+        con = connector.getCon();
+
     }
 
     public PreparedStatement prepStatement(String SQL_INSERT){

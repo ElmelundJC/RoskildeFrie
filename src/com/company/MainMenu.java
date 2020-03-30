@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MainMenu implements GraphicalMenu {
+public class MainMenu extends Crud implements GraphicalMenu {
 
     final String TITLE = "Main Menu";
 
