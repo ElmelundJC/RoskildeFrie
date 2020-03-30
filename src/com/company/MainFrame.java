@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame {
-        private FormPanel formPanel;
+
         private TextPanel textPanel;
 
 
@@ -17,8 +17,8 @@ public class MainFrame extends JFrame {
 
                 setLayout(new BorderLayout());
 
-                formPanel = new FormPanel();
-                add(formPanel, BorderLayout.WEST);
+                /*formPanel = new FormPanel();
+                add(formPanel, BorderLayout.WEST);*/
 
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
                 setSize(400, 300);
@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
                 setJMenuBar(createMenuBar());
             }
 
-            private JMenuBar createMenuBar() {
+            public JMenuBar createMenuBar() {
                 JMenuBar menuBar = new JMenuBar();
 
                 JMenu fileMenu = new JMenu("Vælg fra menu");
@@ -70,37 +70,34 @@ public class MainFrame extends JFrame {
                 indskrivData.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
-                        new FormPanel();
-                        add(formPanel, BorderLayout.CENTER);
-                        indskrivData.setVisible(true);
-                        setVisible(false);
-
-
-
+                        if(e.getSource() == indskrivData) {
+                            new FormPanel().setVisible(true);
+                            System.out.println("Indskriv data");
+                            MainFrame.this.dispose();
+                        }
                     }
                 });
 
+                redigerData.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(e.getSource() == redigerData) {
 
-
-
-
-                /*JCheckBoxMenuItem showFormItem = new JCheckBoxMenuItem("Indskrivningsformular");
-                showFormItem.setSelected(true);
-
-                showFormItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent ev) {
-                        JCheckBoxMenuItem meuItem = (JCheckBoxMenuItem)ev.getSource();
-
-                        formPanel.setVisible(meuItem.isSelected());
+                            System.out.println("Rediger data");
+                            MainFrame.this.dispose();
+                        }
                     }
                 });
 
-                indskrivData.add(showFormItem);
-                fileMenu.add(indskrivData);*/
-
-
-
+                sletData.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(e.getSource() == sletData) {
+                            System.out.println("Slet data");
+                            MainFrame.this.dispose();
+                        }
+                    }
+                });
 
 
                 menuBar.add(fileMenu);

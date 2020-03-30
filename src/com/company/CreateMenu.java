@@ -8,6 +8,8 @@ public class CreateMenu implements GraphicalMenu {
 
     final String TITLE = "Create Menu";
 
+
+
     JFrame f;
     JFrame previousFrame;
 
@@ -26,6 +28,8 @@ public class CreateMenu implements GraphicalMenu {
     String stringNavn;
     String stringAdresse;
     String stringStue;
+    
+    
 
     public CreateMenu(JFrame previousFrame){
         addFrame(TITLE, 400, 500);
@@ -97,3 +101,5 @@ public class CreateMenu implements GraphicalMenu {
 
 
 }
+
+
