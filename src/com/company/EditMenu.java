@@ -18,8 +18,9 @@ public class EditMenu implements GraphicalMenu {
 
     JTextField searchFieldText;
     JTextField idText;
-    JTextField searchResultsText;
     JTextField dropDownSearchText;
+
+    JTextArea searchResultsArea;
 
 
     public EditMenu(JFrame previousFrame){
@@ -46,22 +47,10 @@ public class EditMenu implements GraphicalMenu {
 
 
 
-        JTextArea textArea = new JTextArea(20,20);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-
-
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 
 
-        //textArea.setBounds(10, 200, 360, 200);
-
-
-
-        f.getContentPane().add(scrollPane);
-
-       // f.add(scrollPane);
+        this.returnButton = addButton("Return", 10, 410, 100, 40);
 
 
 
@@ -70,6 +59,20 @@ public class EditMenu implements GraphicalMenu {
         f.setLayout(null);
         f.setVisible(false);
 
+    }
+
+    public JTextArea addTextArea(){
+
+        JTextArea a = new JTextArea();
+
+        a.setText();
+        JScrollPane scrollPane = new JScrollPane(a);
+        a.setBounds(10, 200, 370, 200);
+        //textArea.setBounds(10, 200, 360, 200);
+        f.add(a);
+
+
+        return a;
     }
 
     @Override
@@ -108,6 +111,7 @@ public class EditMenu implements GraphicalMenu {
             previousFrame.setVisible(true);
             f.dispose();
         }
+
 
     }
 
