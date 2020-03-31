@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class EditMenu implements GraphicalMenu {
+public class EditMenu extends Crud implements GraphicalMenu {
 
     final String TITLE = "Read Menu";
 
@@ -46,7 +46,7 @@ public class EditMenu implements GraphicalMenu {
         editButton = addButton("Rediger", 250, 170, 100, 20);
 
 
-
+        searchResultsArea = addTextArea(reader("Børn"));
 
 
 
@@ -61,15 +61,17 @@ public class EditMenu implements GraphicalMenu {
 
     }
 
-    public JTextArea addTextArea(){
+    public JTextArea addTextArea(String populateData){
 
         JTextArea a = new JTextArea();
 
-        a.setText();
+        a.setText(populateData);
         JScrollPane scrollPane = new JScrollPane(a);
         a.setBounds(10, 200, 370, 200);
-        //textArea.setBounds(10, 200, 360, 200);
+
         f.add(a);
+
+
 
 
         return a;
@@ -105,6 +107,13 @@ public class EditMenu implements GraphicalMenu {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==searchButton){
+            searchResultsArea.setText(reader("Forældre"));
+
+
+
+        }
 
         if(e.getSource()==returnButton){
 
