@@ -57,25 +57,16 @@ public class Crud {
 
     //READ
 
-    public void reader() {
-        int i = 0;
-        String[] temp = new String[20];
-
+    public String reader(String table) {
+        String testWord = "";
 
         try {
 
 
-
-            String url = "jdbc:mysql://localhost:3306/rfb_db";
-            String name = "root";
-            String password = "12345678";
-            con = DriverManager.getConnection(url, name, password);
             Statement test = con.createStatement();
-
-            System.out.println("what table would you like to be viewed?");
-
             ResultSet query1 = test.executeQuery("use rfb_db;");
 
+            /*
             DatabaseMetaData rfbdb = con.getMetaData();
             String[] types = {"TABLE"};
             ResultSet rst = rfbdb.getTables(null, null, "%", types);
@@ -84,39 +75,65 @@ public class Crud {
                 temp[i] = rst.getString("TABLE_NAME");
                 i++;
             }
+            */
 
-            System.out.println("press 1 for " + temp[0]);
-            System.out.println("press 2 for " + temp[1]);
-            System.out.println("press 3 for " + temp[2]);
 
-            Scanner s = new Scanner(System.in);
-
-            int picker = s.nextInt();
-            switch (picker) {
-                case 1:
-                    ResultSet query4 = test.executeQuery("select * from " + temp[0]);
+            switch (table) {
+                case "Børn":
+                    ResultSet query4 = test.executeQuery("select * from Børn");
                     while (query4.next()) {
-                        System.out.println(query4.getString("navn"));
+                        //temp.add("\n"+query4.getString("navn"));
+                        //temp.add(query4.getString("adresse"));
+                        //temp.add(query4.getString("Stue_stuenr"));
+
+                        testWord += (query4.getString("navn") + " ");
+                        testWord += (query4.getString("adresse") + " ");
+                        testWord += (query4.getString("Stue_stuenr")+"\n");
+
                     }
-                    break;
-                case 2:
-                    ResultSet query5 = test.executeQuery("select * from " + temp[1]);
+                    System.out.println(testWord);
+                    return testWord;
+
+                case "Forældre":
+                    ResultSet query5 = test.executeQuery("select * from Forældre");
                     while (query5.next()) {
-                        System.out.println(query5.getString("navn") + " \nNummer = " + query5.getString("mobilnummmer"));
+                        testWord += (query5.getString("navn") + " ");
+                        testWord += (query5.getString("mobilnummmer") + " ");
+                        testWord += (query5.getString("arbejdsnummer")+"\n");
                     }
-                    break;
-                case 3:
-                    ResultSet query6 = test.executeQuery("select * from " + temp[2]);
+                    System.out.println(testWord);
+                    return testWord;
+
+                case "Stue":
+                    ResultSet query6 = test.executeQuery("select * from Stue");
                     while (query6.next()) {
-                        System.out.println(query6.getString("stuenr.") + " " + query6.getString("farve"));
+                        testWord += (query6.getString("stuenr") + " ");
+                        testWord += (query6.getString("farve")+"\n");
                     }
-                    break;
+                    System.out.println(testWord);
+                    return testWord;
+
+                default:
+                    ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
+                            "inner join forældre " +
+                            "where Forældre.Børn_id_barn = Børn.id_barn and Børn.navn = "+ "\"" + table +"\"");
+                    while (query7.next()) {
+                        testWord += (query7.getString("navn") + " ");
+                        testWord += (query7.getString("adresse") + " ");
+                        testWord += (query7.getString("mobilnummmer") + " ");
+                        testWord += (query7.getString("arbejdsnummer")+"\n");
+
+                    }
+                    System.out.println(testWord);
+                    return testWord;
+
             }
 
         } catch (
                 SQLException e) {
             e.printStackTrace();
         }
+        return testWord;
 
     }
 
