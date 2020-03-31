@@ -11,12 +11,10 @@ public class MainMenu extends Crud implements GraphicalMenu {
 
     JFrame f;
     JButton create;
-    JButton read;
-    JButton update;
-    JButton delete;
+    JButton editMenuButton;
     JButton quit;
 
-    ReadMenu readMenu;
+    EditMenu editMenu;
     CreateMenu createMenu;
     UpdateMenu updateMenu;
     DeleteMenu deleteMenu;
@@ -31,10 +29,6 @@ public class MainMenu extends Crud implements GraphicalMenu {
     public void createMainMenu(){
         addFrame(TITLE, 400, 500);
 
-        this.readMenu = new ReadMenu(f);
-        this.createMenu = new CreateMenu(f);
-        this.updateMenu = new UpdateMenu(f);
-        this.deleteMenu = new DeleteMenu(f);
     }
 
 
@@ -43,10 +37,9 @@ public class MainMenu extends Crud implements GraphicalMenu {
         this.f = new JFrame(windowName);
         f.setSize(sizeX, sizeY);
 
-        this.create = addButton("Create", 10, 10, 100, 40);
-        this.read = addButton("Read", 10, 60, 100, 40);
-        this.update = addButton("Update", 10, 110, 100, 40);
-        this.delete = addButton("Delete", 10, 160, 100, 40);
+        this.create = addButton("Tilføj Barn", 95, 10, 200, 40);
+        this.editMenuButton = addButton("Rediger/Søg Børn", 95, 60, 200, 40);
+
 
         this.quit = addButton("Quit", 10, 410, 100, 40);
 
@@ -73,23 +66,16 @@ public class MainMenu extends Crud implements GraphicalMenu {
             f.dispose();
         }
         if (e.getSource() == create){
-
+            this.createMenu = new CreateMenu(f);
             createMenu.setVisibility(true);
+
+
+
             this.setVisibility(false);
         }
-        if (e.getSource() == read){
-
-            readMenu.setVisibility(true);
-            this.setVisibility(false);
-        }
-        if (e.getSource() == update){
-
-            updateMenu.setVisibility(true);
-            this.setVisibility(false);
-        }
-        if (e.getSource() == delete){
-
-            deleteMenu.setVisibility(true);
+        if (e.getSource() == editMenuButton){
+            this.editMenu = new EditMenu(f);
+            editMenu.setVisibility(true);
             this.setVisibility(false);
         }
 

@@ -122,7 +122,9 @@ public class Crud {
 
     //UPDATE
 
-    public void Update(String url, String user, String password) {
+    public void update(String cpr_nummer, String navn, String adresse, int stuenr, int barnId) {
+
+        /*
         Connection con = null;
         Scanner scan = new Scanner(System.in);
         System.out.println("Prompting user for information");
@@ -137,15 +139,17 @@ public class Crud {
         System.out.println("Vælg barnets ID nummer");
         String barnId = scan.next();
 
+         */
+
         try {
-            con = DriverManager.getConnection(url, user, password);
+
             PreparedStatement myStmt = con.prepareStatement("UPDATE BØRN SET cpr_nummer = ?, navn = ?, adresse = ?, Stue_stuenr = ? WHERE id_barn =?;");
 
             myStmt.setString(1, cpr_nummer);
             myStmt.setString(2, navn);
             myStmt.setString(3, adresse);
-            myStmt.setString(4, stuenr);
-            myStmt.setString(5, barnId);
+            myStmt.setInt(4, stuenr);
+            myStmt.setInt(5, barnId);
 
 
             int myResult = myStmt.executeUpdate();

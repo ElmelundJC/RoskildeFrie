@@ -16,7 +16,14 @@ public class Main {
 
         //connection.closeConnection();
 
-        MainMenu testWindow = new MainMenu();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+
+                MainMenu testWindow = new MainMenu();
+        }
+        });
+
 
 
     }
