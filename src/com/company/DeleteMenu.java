@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DeleteMenu extends Crud implements GraphicalMenu {
+/*public class DeleteMenu extends Crud implements GraphicalMenu {
 
     final String TITLE = "Delete Menu";
 
@@ -93,3 +93,4 @@ public class DeleteMenu extends Crud implements GraphicalMenu {
         f.setVisible(visibility);
     }
 }
+*/

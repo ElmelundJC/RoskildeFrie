@@ -53,6 +53,11 @@ public class CreateMenu extends Crud implements GraphicalMenu {
         f.setVisible(false);
     }
 
+    @Override
+    public JButton addButton(String textField, int bPosX, int bPosY, int width, int height, JFrame frame) {
+        return null;
+    }
+
 
     @Override
     public JButton addButton(String textField, int bPosX, int bPosY, int width, int height) {

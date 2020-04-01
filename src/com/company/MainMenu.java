@@ -16,8 +16,6 @@ public class MainMenu extends Crud implements GraphicalMenu {
 
     EditMenu editMenu;
     CreateMenu createMenu;
-    UpdateMenu updateMenu;
-    DeleteMenu deleteMenu;
 
 
     public MainMenu() {
@@ -45,6 +43,11 @@ public class MainMenu extends Crud implements GraphicalMenu {
 
         f.setLayout(null);
         f.setVisible(true);
+    }
+
+    @Override
+    public JButton addButton(String textField, int bPosX, int bPosY, int width, int height, JFrame frame) {
+        return null;
     }
 
 

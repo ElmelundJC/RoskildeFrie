@@ -43,6 +43,11 @@ public class UpdateMenu implements GraphicalMenu {
     }
 
     @Override
+    public JButton addButton(String textField, int bPosX, int bPosY, int width, int height, JFrame frame) {
+        return null;
+    }
+
+    @Override
     public JButton addButton(String textField, int bPosX, int bPosY, int width, int height) {
         JButton b = new JButton(textField);
         b.setBounds(bPosX, bPosY, width, height);
