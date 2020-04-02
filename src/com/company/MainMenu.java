@@ -5,21 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MainMenu implements GraphicalMenu {
+public class MainMenu extends Crud implements GraphicalMenu {
 
     final String TITLE = "Main Menu";
 
     JFrame f;
     JButton create;
-    JButton read;
-    JButton update;
-    JButton delete;
+    JButton editMenuButton;
     JButton quit;
 
-    ReadMenu readMenu;
+    EditMenu editMenu;
     CreateMenu createMenu;
-    UpdateMenu updateMenu;
-    DeleteMenu deleteMenu;
 
 
     public MainMenu() {
@@ -31,10 +27,6 @@ public class MainMenu implements GraphicalMenu {
     public void createMainMenu(){
         addFrame(TITLE, 400, 500);
 
-        this.readMenu = new ReadMenu(f);
-        this.createMenu = new CreateMenu(f);
-        this.updateMenu = new UpdateMenu(f);
-        this.deleteMenu = new DeleteMenu(f);
     }
 
 
@@ -43,15 +35,18 @@ public class MainMenu implements GraphicalMenu {
         this.f = new JFrame(windowName);
         f.setSize(sizeX, sizeY);
 
-        this.create = addButton("Create", 10, 10, 100, 40);
-        this.read = addButton("Read", 10, 60, 100, 40);
-        this.update = addButton("Update", 10, 110, 100, 40);
-        this.delete = addButton("Delete", 10, 160, 100, 40);
+        this.create = addButton("Tilføj Barn", 95, 10, 200, 40);
+        this.editMenuButton = addButton("Rediger/Søg Børn", 95, 60, 200, 40);
 
         this.quit = addButton("Quit", 10, 410, 100, 40);
 
         f.setLayout(null);
         f.setVisible(true);
+    }
+
+    @Override
+    public JButton addButton(String textField, int bPosX, int bPosY, int width, int height, JFrame frame) {
+        return null;
     }
 
 
@@ -63,7 +58,6 @@ public class MainMenu implements GraphicalMenu {
         b.addActionListener(this);
 
         return b;
-
     }
 
 
@@ -73,23 +67,16 @@ public class MainMenu implements GraphicalMenu {
             f.dispose();
         }
         if (e.getSource() == create){
-
+            this.createMenu = new CreateMenu(f);
             createMenu.setVisibility(true);
+
+
+
             this.setVisibility(false);
         }
-        if (e.getSource() == read){
-
-            readMenu.setVisibility(true);
-            this.setVisibility(false);
-        }
-        if (e.getSource() == update){
-
-            updateMenu.setVisibility(true);
-            this.setVisibility(false);
-        }
-        if (e.getSource() == delete){
-
-            deleteMenu.setVisibility(true);
+        if (e.getSource() == editMenuButton){
+            this.editMenu = new EditMenu(f);
+            editMenu.setVisibility(true);
             this.setVisibility(false);
         }
 
