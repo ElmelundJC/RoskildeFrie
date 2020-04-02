@@ -66,30 +66,16 @@ public class Crud {
             Statement test = con.createStatement();
             ResultSet query1 = test.executeQuery("use rfb_db;");
 
-            /*
-            DatabaseMetaData rfbdb = con.getMetaData();
-            String[] types = {"TABLE"};
-            ResultSet rst = rfbdb.getTables(null, null, "%", types);
-            while (rst.next()) {
-                //System.out.println(rst.getString("TABLE_NAME"));
-                temp[i] = rst.getString("TABLE_NAME");
-                i++;
-            }
-            */
+
 
 
             switch (table) {
                 case "Børn":
                     ResultSet query4 = test.executeQuery("select * from Børn");
                     while (query4.next()) {
-                        //temp.add("\n"+query4.getString("navn"));
-                        //temp.add(query4.getString("adresse"));
-                        //temp.add(query4.getString("Stue_stuenr"));
-
                         testWord += (query4.getString("navn") + " ");
                         testWord += (query4.getString("adresse") + " ");
                         testWord += (query4.getString("Stue_stuenr")+"\n");
-
                     }
                     System.out.println(testWord);
                     return testWord;
@@ -129,34 +115,124 @@ public class Crud {
 
             }
 
-        } catch (
-                SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return testWord;
 
     }
 
+    public String idReader(String table) {
+        String testWord = "";
+
+        Statement test;
+
+        try {
+            test = con.createStatement();
+
+            ResultSet query1 = test.executeQuery("use rfb_db;");
+            switch (table) {
+                case "Børn":
+                    ResultSet query4 = test.executeQuery("select * from Børn");
+            while (query4.next()) {
+                testWord += ("ID = '"+query4.getString("id_barn") + "' ");
+                testWord += ("Navn = '"+query4.getString("navn") + "' ");
+                testWord += ("Adresse = '"+query4.getString("adresse") + "' ");
+                testWord += ("Stue = '"+query4.getString("Stue_stuenr")+"'\n");
+            }
+
+            case "Forældre":
+                ResultSet query5 = test.executeQuery("select * from Forældre");
+                while (query5.next()) {
+                    testWord += (query5.getString("navn") + " ");
+                    testWord += (query5.getString("mobilnummmer") + " ");
+                    testWord += (query5.getString("arbejdsnummer") + " ");
+                    testWord += (query5.getString("arbejdsnummer")+"\n");
+                }
+                System.out.println(testWord);
+                return testWord;
+
+                default:
+                    ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
+                            "inner join forældre " +
+                            "where Forældre.Børn_id_barn = Børn.id_barn and Børn.navn = "+ "\"" + table +"\"");
+                    while (query7.next()) {
+                        testWord += (query7.getString("navn") + " ");
+                        testWord += (query7.getString("mobilnummer") + " ");
+                        testWord += (query7.getString("arbejdsnummer") + " ");
+                        testWord += (query7.getString("Børn_id_barn")+"\n");
+
+                    }
+                    System.out.println(testWord);
+                    return testWord;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(testWord);
+        return testWord;
+
+    }
+
+    public String idReaderSimple(int id) {
+        String testWord = "";
+
+
+        Statement test;
+        try {
+            test = con.createStatement();
+
+            ResultSet query1 = test.executeQuery("use rfb_db;");
+
+
+            ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
+                    "where Børn.id_barn = " + "\"" + id + "\"");
+            while (query7.next()) {
+                testWord += (query7.getString("id_barn") + " ");
+                testWord += (query7.getString("cpr_nummer") + " ");
+                testWord += (query7.getString("navn") + " ");
+                testWord += (query7.getString("adresse") + " ");
+                testWord += (query7.getString("Stue_stuenr"));
+
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(testWord);
+        return testWord;
+
+    }
+
+
+    public String idReaderColumn(int id, String column) {
+        String testWord = "";
+
+        Statement test;
+        try {
+            test = con.createStatement();
+
+            ResultSet query1 = test.executeQuery("use rfb_db;");
+
+            ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
+                    "where Børn.id_barn = " + "\"" + id + "\"");
+
+            while (query7.next()) {
+                testWord += query7.getString(column);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(testWord);
+        return testWord;
+
+    }
     //UPDATE
 
     public void update(String cpr_nummer, String navn, String adresse, int stuenr, int barnId) {
 
-        /*
-        Connection con = null;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Prompting user for information");
-        System.out.println("Rediger Cpr-nummer");
-        String cpr_nummer = scan.nextLine();
-        System.out.println("Rediger navn");
-        String navn = scan.nextLine();
-        System.out.println("Rediger Adresse");
-        String adresse = scan.nextLine();
-        System.out.println("Rediger Stuenummer");
-        String stuenr = scan.next();
-        System.out.println("Vælg barnets ID nummer");
-        String barnId = scan.next();
-
-         */
 
         try {
 

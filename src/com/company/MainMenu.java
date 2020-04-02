@@ -38,7 +38,6 @@ public class MainMenu extends Crud implements GraphicalMenu {
         this.create = addButton("Tilføj Barn", 95, 10, 200, 40);
         this.editMenuButton = addButton("Rediger/Søg Børn", 95, 60, 200, 40);
 
-
         this.quit = addButton("Quit", 10, 410, 100, 40);
 
         f.setLayout(null);
@@ -59,7 +58,6 @@ public class MainMenu extends Crud implements GraphicalMenu {
         b.addActionListener(this);
 
         return b;
-
     }
 
 

@@ -4,6 +4,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Scanner;
 
 public class EditMenu extends Crud implements GraphicalMenu {
 
@@ -32,6 +33,7 @@ public class EditMenu extends Crud implements GraphicalMenu {
     JTextField cprNummer;
     JTextField adresse;
     JTextField stue;
+    JTextField textId;
 
 
     public EditMenu(JFrame previousFrame){
@@ -49,12 +51,12 @@ public class EditMenu extends Crud implements GraphicalMenu {
 
 
         searchFieldText = addTextField("Indtast søgning", 140 , 10, 100, 20, f);
-        searchButton = addButton("Søg", 250, 35, 100, 20, f);
+        searchButton = addButton("Søg", 250, 10, 100, 20, f);
 
-        searchFieldText = addTextField("Indtast ID", 140 , 170, 100, 20, f);
+        idText = addTextField("Indtast ID", 140 , 170, 100, 20, f);
         editButton = addButton("Rediger", 250, 170, 100, 20, f);
 
-        searchResultsArea = addTextArea(reader("Børn"), f);
+        searchResultsArea = addTextArea(idReader("Børn"), f);
 
         this.returnButton = addButton("Return", 10, 410, 100, 40, f);
 
@@ -65,6 +67,8 @@ public class EditMenu extends Crud implements GraphicalMenu {
 
     public void popUpFrame(String windowName, int sizeX, int sizeY, int id){
 
+        Scanner scan = new Scanner(idReaderSimple(id));
+
         this.popupMenu = new JFrame(windowName);
         popupMenu.setSize(sizeX, sizeY);
 
@@ -72,13 +76,20 @@ public class EditMenu extends Crud implements GraphicalMenu {
         delete = addButton("Delete", 95 , 240, 90, 20,popupMenu);
         returnToSearch = addButton("Annuller", 190, 240, 90, 20,popupMenu);
 
+
+
         navn = addTextField("Navn", 100, 10, 180, 20, popupMenu);
         cprNummer = addTextField("Cpr Nummer", 100, 40, 180, 20, popupMenu);
         adresse = addTextField("Adresse", 100, 70, 180, 20, popupMenu);
         stue = addTextField("Stue", 100, 100, 180, 20, popupMenu);
+        textId = addTextField("ID", 100, 130, 180, 20, popupMenu);
 
 
-
+        textId.setText(idReaderColumn(id, "id_barn"));
+        cprNummer.setText(idReaderColumn(id, "cpr_nummer"));
+        navn.setText(idReaderColumn(id, "navn"));
+        adresse.setText(idReaderColumn(id, "adresse"));
+        stue.setText(idReaderColumn(id, "Stue_stuenr"));
 
 
 
@@ -139,21 +150,30 @@ public class EditMenu extends Crud implements GraphicalMenu {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource()==searchButton){
-            searchResultsArea.setText(reader("Forældre"));
+            searchResultsArea.setText(idReader(searchFieldText.getText()));
 
         }
 
         if(e.getSource()==editButton){
 
-            popUpFrame("Rediger Info", 300, 300, Integer.parseInt(searchFieldText.getText()));
+            popUpFrame("Rediger Info", 300, 300, Integer.parseInt(idText.getText()));
 
 
         }
         if(e.getSource()==accept){
 
+            update(cprNummer.getText(), navn.getText(), adresse.getText(), Integer.parseInt(stue.getText()), Integer.parseInt(textId.getText()));
+            popupMenu.dispose();
+
         }
 
-        if(e.getSource()==delete){}
+        if(e.getSource()==delete){
+            deleteRow(Integer.parseInt(textId.getText()));
+            popupMenu.dispose();
+
+
+
+        }
 
         if(e.getSource()==returnToSearch){
 
@@ -165,7 +185,7 @@ public class EditMenu extends Crud implements GraphicalMenu {
 
             previousFrame.setVisible(true);
             f.dispose();
-            popupMenu.dispose();
+
         }
 
 
