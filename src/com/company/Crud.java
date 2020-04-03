@@ -55,72 +55,7 @@ public class Crud {
 
     }
 
-    //READ
-
-    public String reader(String table) {
-        String testWord = "";
-
-        try {
-
-
-            Statement test = con.createStatement();
-            ResultSet query1 = test.executeQuery("use rfb_db;");
-
-
-
-
-            switch (table) {
-                case "Børn":
-                    ResultSet query4 = test.executeQuery("select * from Børn");
-                    while (query4.next()) {
-                        testWord += (query4.getString("navn") + " ");
-                        testWord += (query4.getString("adresse") + " ");
-                        testWord += (query4.getString("Stue_stuenr")+"\n");
-                    }
-                    System.out.println(testWord);
-                    return testWord;
-
-                case "Forældre":
-                    ResultSet query5 = test.executeQuery("select * from Forældre");
-                    while (query5.next()) {
-                        testWord += (query5.getString("navn") + " ");
-                        testWord += (query5.getString("mobilnummmer") + " ");
-                        testWord += (query5.getString("arbejdsnummer")+"\n");
-                    }
-                    System.out.println(testWord);
-                    return testWord;
-
-                case "Stue":
-                    ResultSet query6 = test.executeQuery("select * from Stue");
-                    while (query6.next()) {
-                        testWord += (query6.getString("stuenr") + " ");
-                        testWord += (query6.getString("farve")+"\n");
-                    }
-                    System.out.println(testWord);
-                    return testWord;
-
-                default:
-                    ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
-                            "inner join forældre " +
-                            "where Forældre.Børn_id_barn = Børn.id_barn and Børn.navn = "+ "\"" + table +"\"");
-                    while (query7.next()) {
-                        testWord += (query7.getString("navn") + " ");
-                        testWord += (query7.getString("adresse") + " ");
-                        testWord += (query7.getString("mobilnummmer") + " ");
-                        testWord += (query7.getString("arbejdsnummer")+"\n");
-
-                    }
-                    System.out.println(testWord);
-                    return testWord;
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return testWord;
-
-    }
+    //reader
 
     public String idReader(String table) {
         String testWord = "";
@@ -130,7 +65,6 @@ public class Crud {
         try {
             test = con.createStatement();
 
-            ResultSet query1 = test.executeQuery("use rfb_db;");
             switch (table) {
                 case "Børn":
                     ResultSet query4 = test.executeQuery("select * from Børn");
@@ -140,6 +74,8 @@ public class Crud {
                 testWord += ("Adresse = '"+query4.getString("adresse") + "' ");
                 testWord += ("Stue = '"+query4.getString("Stue_stuenr")+"'\n");
             }
+            return testWord;
+
 
             case "Forældre":
                 ResultSet query5 = test.executeQuery("select * from Forældre");
@@ -149,7 +85,7 @@ public class Crud {
                     testWord += (query5.getString("arbejdsnummer") + " ");
                     testWord += (query5.getString("arbejdsnummer")+"\n");
                 }
-                System.out.println(testWord);
+
                 return testWord;
 
                 default:
@@ -158,52 +94,21 @@ public class Crud {
                             "where Forældre.Børn_id_barn = Børn.id_barn and Børn.navn = "+ "\"" + table +"\"");
                     while (query7.next()) {
                         testWord += (query7.getString("navn") + " ");
-                        testWord += (query7.getString("mobilnummer") + " ");
                         testWord += (query7.getString("arbejdsnummer") + " ");
                         testWord += (query7.getString("Børn_id_barn")+"\n");
 
                     }
-                    System.out.println(testWord);
+
                     return testWord;
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(testWord);
         return testWord;
 
     }
 
-    public String idReaderSimple(int id) {
-        String testWord = "";
-
-
-        Statement test;
-        try {
-            test = con.createStatement();
-
-            ResultSet query1 = test.executeQuery("use rfb_db;");
-
-
-            ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
-                    "where Børn.id_barn = " + "\"" + id + "\"");
-            while (query7.next()) {
-                testWord += (query7.getString("id_barn") + " ");
-                testWord += (query7.getString("cpr_nummer") + " ");
-                testWord += (query7.getString("navn") + " ");
-                testWord += (query7.getString("adresse") + " ");
-                testWord += (query7.getString("Stue_stuenr"));
-
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println(testWord);
-        return testWord;
-
-    }
 
 
     public String idReaderColumn(int id, String column) {
@@ -212,8 +117,6 @@ public class Crud {
         Statement test;
         try {
             test = con.createStatement();
-
-            ResultSet query1 = test.executeQuery("use rfb_db;");
 
             ResultSet query7 = test.executeQuery("SELECT * FROM Børn " +
                     "where Børn.id_barn = " + "\"" + id + "\"");

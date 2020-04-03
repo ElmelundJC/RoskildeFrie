@@ -67,8 +67,6 @@ public class EditMenu extends Crud implements GraphicalMenu {
 
     public void popUpFrame(String windowName, int sizeX, int sizeY, int id){
 
-        Scanner scan = new Scanner(idReaderSimple(id));
-
         this.popupMenu = new JFrame(windowName);
         popupMenu.setSize(sizeX, sizeY);
 
