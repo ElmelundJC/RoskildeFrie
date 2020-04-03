@@ -11,7 +11,7 @@ public class Crud {
 
     public Crud(){
 
-        connector = new Connector("root", "Healmelawl0210");
+        connector = new Connector("root", "12345678");
         con = connector.getCon();
 
     }

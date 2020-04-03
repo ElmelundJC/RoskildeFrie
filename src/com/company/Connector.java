@@ -13,7 +13,7 @@ public class Connector {
     public Connector(String username, String password){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rfb_db",username,password);
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rfb_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",username,password);
 
             System.out.println("Succesfully connected to server");
 
